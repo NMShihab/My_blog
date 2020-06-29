@@ -42,7 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Blog',
     'LogIn',
+    'crispy_forms',
 ]
+
+# bootstrap, bootstrap3, bootstrap4, uni-form
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
