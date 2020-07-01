@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% load crispy_forms_tags %}
-{% block title_bloc %}SignUp{% endblock %}
+{% block title_block %}SignUp{% endblock %}
 
 {% block body_block %}
 
 {% if registered %}
 
 <div class="alert alert-success">
-  <p>Account Created successfully <a href="">LogIn Here</a></p>
+  <p>Account Created successfully <a href="{% url 'LogIn:login' %}">LogIn Here</a></p>
 </div>
 
 {% else %}
@@ -23,7 +23,7 @@
 
 <br>
 
-<p>Already have an account <a href="">LogIn Here</a></p>
+<p>Already have an account <a href="{% url 'LogIn:login' %}">LogIn Here</a></p>
 
 
 {% endif %}
