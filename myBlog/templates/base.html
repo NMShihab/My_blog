@@ -24,13 +24,18 @@
         <a class="nav-link" href="{% url 'index' %}">Home</a>
       </li>
       {% if user.is_authenticated %}
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
+          @{{user.username}}
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'LogIn:profile' %}">Profile</a>
+          <a class="dropdown-item" href="{% url 'Blog:create_blog' %}">Create Blog</a>
+          <hr>
+          <a class="dropdown-item" href="{% url 'LogIn:logout' %}">LogOut</a>
 
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'LogIn:logout' %}">LogOut</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'LogIn:profile' %}">Profile</a>
-      </li>
+        </div>
+      </div>
       {% else %}
       <li class="nav-item">
         <a class="nav-link" href="{% url 'LogIn:signup' %}">SignUp</a>
