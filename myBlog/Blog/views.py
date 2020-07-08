@@ -3,6 +3,8 @@ from django.views.generic import CreateView,UpdateView,DetailView,ListView,Detai
 from Blog.models import Blog
 from  django.urls import reverse,reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from Blog.form import CommentForm
 import uuid
 
 
@@ -33,3 +35,18 @@ class CreateBlog(LoginRequiredMixin,CreateView):
         blog_object.slug = title.replace(" ", "-") + "-" + str(uuid.uuid4())
         blog_object.save()
         return HttpResponseRedirect(reverse('index'))
+
+@login_required
+def blog_details(request, slug):
+    blog = Blog.objects.get(slug=slug)
+    comment_form = CommentForm()
+
+    if request.method == "POST":
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.user = request.user
+            comment.blog = blog
+            comment.save()
+            return HttpResponseRedirect(reverse('Blog:blog_details',kwargs={'slug':slug}))
+    return render(request,'Blog/blog_details.html',context={'blog':blog,'comment_form':comment_form})
