@@ -1,10 +1,10 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.views.generic import CreateView,UpdateView,DetailView,ListView,DetailView,TemplateView,View
 from Blog.models import Blog
-from  django.urls import reverse,reverse_lazy
+from django.urls import reverse,reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from Blog.form import CommentForm
+from Blog.forms import CommentForm
 import uuid
 
 
