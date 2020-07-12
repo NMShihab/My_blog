@@ -38,4 +38,4 @@ class Comment(models.Model):
 
 class Likes(models.Model):
     blog = models.ForeignKey(Blog,on_delete = models.CASCADE,related_name='liked_blog')
-    User = models.ForeignKey(User,on_delete = models.CASCADE,related_name='liker_user')
+    user = models.ForeignKey(User,on_delete = models.CASCADE,related_name='liker_user')
