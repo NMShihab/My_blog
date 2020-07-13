@@ -14,6 +14,19 @@ import uuid
 #     return render(request,'Blog/blog_list.html',context={})
 
 
+class My_blog(LoginRequiredMixin, TemplateView):
+    template_name = 'Blog/my_blog.html'
+
+class update_blog(LoginRequiredMixin,UpdateView):
+    model = Blog
+    fields =('blog_title','blog_content','blog_image')
+    template_name = 'Blog/edit_blog.html'
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('Blog:blog_details',kwargs={'slug':self.object.slug})
+
+
+
 class Blog_list(ListView):
     context_object_name = 'Blogs'
     model = Blog
